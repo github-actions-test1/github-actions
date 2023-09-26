@@ -47,7 +47,7 @@ jobs:
         ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
         ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
-#      run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP_NAME"
+      run: terraform init -backend-config= "storage_account_name=$STORAGE_ACCOUNT" -backend-config= "container_name=$CONTAINER_NAME" -backend-config= "resource_group_name=$RESOURCE_GROUP_NAME"
         # Run a Terraform plan
     - name: Terraform plan
       id: plan
