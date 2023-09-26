@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch: #this attribute will enable the manual run to the pipeline
 # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+permissions:
+      id-token: write
+      contents: read
+
 defaults:
   run:
     shell: bash
@@ -48,6 +52,7 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+
 #        CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
 #        STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
 #      working-directory: ${{ env.ROOT_PATH }}
