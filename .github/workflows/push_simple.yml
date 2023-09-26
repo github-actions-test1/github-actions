@@ -9,14 +9,6 @@ on:
 defaults:
   run:
     shell: bash
-env: 
-#  ROOT_PATH: '${{github.workspace}}/actions/terraform-azure'
-  ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-  ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-  ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-  ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-#  STAGE_NAME: production
-
 jobs:
   terraform_plan:
     name: 'terraform plan'
@@ -30,12 +22,29 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+       # Log into Azure with OIDC integration
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
   
     - name: terraform init
       run: terraform init
+      with:
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+        
 #      working-directory: ${{ env.ROOT_PATH }}
 
     - name: terraform Plan
       run: terraform plan 
+      with:
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
 #      working-directory: ${{ env.ROOT_PATH }}
       
