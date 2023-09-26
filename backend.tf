@@ -11,7 +11,7 @@ terraform {
     use_oidc         = true
     use_azuread_auth = true
     storage_account_name = "testtfstateoidc"
-    resource_group_name = var.resource_group_name
+    resource_group_name = "free-res"
     container_name = "tfstate"
   }
 }
