@@ -30,6 +30,8 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+        
+
   
     - name: terraform init
       run: terraform init
@@ -37,7 +39,8 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
-        
+        CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
 #      working-directory: ${{ env.ROOT_PATH }}
 
     - name: terraform Plan
@@ -46,5 +49,7 @@ jobs:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
         subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+        CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
 #      working-directory: ${{ env.ROOT_PATH }}
       
